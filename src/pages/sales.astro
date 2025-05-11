@@ -1,0 +1,8 @@
+---
+import MainLayout from "./index.astro";
+import SalesWrapper from "@/features/sales";
+---
+
+<MainLayout>
+    <SalesWrapper client:only="react" />
+</MainLayout>
