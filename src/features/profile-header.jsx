@@ -1,37 +1,38 @@
-import React, { useEffect, useState } from "react";
-import "../styles/global.css";
+import { useState, useEffect } from "react";
 
-async function load() {
-  //const localUrl = "http://localhost:5173/src/App.tsx";
-  const localUrl = "http://localhost:3001/bundle.js";
-  const remoteUrl = "https://likebutton-beryl.vercel.app/bundle.js";
+const getModuleUrl = () => {
+  const localStorageUrl = localStorage.getItem("moduleUrl");
+  console.log("localStorageUrl -> ", localStorageUrl);
+  return localStorageUrl || "https://salesportal.val.run/";
+};
 
+let cachedModule = null;
+
+const loadModule = async () => {
+  if (cachedModule) return cachedModule;
+
+  const moduleUrl = getModuleUrl();
   try {
-    const response = await fetch(localUrl, { method: "HEAD" });
-    if (response.ok) {
-      console.log("Carregando ProfileHeader localmente");
-      return (await import(localUrl)).default;
-    }
-    throw new Error("Módulo ProfileHeader local não encontrado");
-  } catch (e) {
-    console.error("error local load", e);
-    console.log("Carregando ProfileHeader remoto");
-    return (await import(remoteUrl)).default;
+    const mod = await import(moduleUrl);
+    cachedModule = mod.default;
+    return cachedModule;
+  } catch (error) {
+    console.error("Erro ao importar o módulo:", error);
+    return null; // Ou um componente de fallback
   }
-}
+};
 
 const ProfileHeaderWrapper = () => {
-  const [ComponentReact, setComponent] = useState(null);
+  const [Component, setComponent] = useState(null);
 
   useEffect(() => {
-    load().then((Component) => {
-      setComponent(() => Component);
+    loadModule().then((Mod) => {
+      if (Mod) setComponent(() => Mod);
     });
   }, []);
 
-  if (!ComponentReact) return <div>Carregando...</div>;
-
-  return <ComponentReact />;
+  if (!Component) return <div>Loading...</div>; // Fallback enquanto carrega
+  return <Component />;
 };
 
 export default ProfileHeaderWrapper;

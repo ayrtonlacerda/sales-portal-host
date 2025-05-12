@@ -1,10 +1,15 @@
-<!doctype html>
+---
+import "../styles/global.css";
+import ProfileHeaderWrapper from "../features/profile-header.jsx";
+---
+
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <title>Sales Portal</title>
+        <meta name="astro-view-transitions-enabled" content="true" />
         <script type="importmap">
             {
                 "imports": {
@@ -18,18 +23,62 @@
                 }
             }
         </script>
+
+        <!-- Opcional: preload do módulo -->
+        <script type="module">
+            import "react";
+            import "react-dom";
+            import "lucide-react";
+            import "clsx";
+            import "class-variance-authority";
+            import "tailwind-merge";
+            import "../features/profile-header.jsx";
+            console.log("Todos os módulos foram pré-carregados");
+        </script>
     </head>
 
     <body class="h-screen w-screen p-6">
-        <slot />
+        <div class="flex flex-col gap-8 h-full">
+            <!-- Header stays persistent -->
+            <ProfileHeaderWrapper client:only="react" transition:persist />
+            <div class="flex flex-col gap-8 h-full">
+                <main class="grid grid-cols-5 gap-8 h-full">
+                    <div
+                        class="h-full col-span-1 border-2 border-black-400 rounded-4xl p-6"
+                    >
+                        <a href="/contacts">
+                            <div
+                                class="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-100 cursor-pointer transition"
+                            >
+                                <span class="text-xl">📇</span>
+                                <span class="text-gray-800 font-medium"
+                                    >Contatos</span
+                                >
+                            </div>
+                        </a>
+                        <a href="/sales">
+                            <div
+                                class="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-100 cursor-pointer transition"
+                            >
+                                <span class="text-xl">🛒</span>
+                                <span class="text-gray-800 font-medium"
+                                    >Vendas</span
+                                >
+                            </div></a
+                        >
+                    </div>
+                    <slot />
+                </main>
+            </div>
+        </div>
     </body>
-</html>
 
-<style>
-    html,
-    body {
-        margin: 0;
-        width: 100%;
-        height: 100%;
-    }
-</style>
+    <style>
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</html>
