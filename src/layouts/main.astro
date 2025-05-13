@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import ProfileHeaderWrapper from "../features/profile-header.jsx";
+import ProfileHeader from "../features/profile-header.astro";
 ---
 
 <html lang="en">
@@ -40,7 +40,7 @@ import ProfileHeaderWrapper from "../features/profile-header.jsx";
     <body class="h-screen w-screen p-6">
         <div class="flex flex-col gap-8 h-full">
             <!-- Header stays persistent -->
-            <ProfileHeaderWrapper client:only="react" transition:persist />
+            <ProfileHeader transition:persist />
             <div class="flex flex-col gap-8 h-full">
                 <main class="grid grid-cols-5 gap-8 h-full">
                     <div
@@ -64,8 +64,8 @@ import ProfileHeaderWrapper from "../features/profile-header.jsx";
                                 <span class="text-gray-800 font-medium"
                                     >Vendas</span
                                 >
-                            </div></a
-                        >
+                            </div>
+                        </a>
                     </div>
                     <slot />
                 </main>

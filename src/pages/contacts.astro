@@ -1,8 +1,8 @@
 ---
 import MainLayout from "./index.astro";
-import ContactsWrapper from "../features/contacts";
+import ContactsAstro from "../features/contacts.astro";
 ---
 
 <MainLayout>
-    <ContactsWrapper client:only="react" />
+    <ContactsAstro />
 </MainLayout>
