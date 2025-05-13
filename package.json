@@ -8,7 +8,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "prod": "astro build && astro preview",
-    "start": "node ./dist/server/entry.mjs"
+    "start": "astro preview"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.2.3",
