@@ -2,7 +2,7 @@ import { useState } from "react";
 import ModuleWrapper from "./ModuleWrapper";
 // @ts-ignore
 const { useSearch } = await import(
-  "https://salesportal.val.run/?https://sales-portal-search-production.up.railway.app/bundle.js"
+  "https://salesportal.val.run/?bundleUrl=https://sales-portal-search-production.up.railway.app/bundle.js"
 );
 
 export const Menu = () => {
@@ -34,7 +34,7 @@ export const Menu = () => {
           <div className="bg-blue-50 rounded-2xl px-6 py-4 mb-6 flex-col">
             <ModuleWrapper
               storageKey="moduleSearchUrl"
-              defaultUrl="https://salesportal.val.run/?https://sales-portal-search-production.up.railway.app/bundle.js"
+              defaultUrl="https://salesportal.val.run/?bundleUrl=https://sales-portal-search-production.up.railway.app/bundle.js"
             />
 
             <ModuleWrapper
