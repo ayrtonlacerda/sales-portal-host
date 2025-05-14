@@ -32,7 +32,7 @@ export const Menu = () => {
           <div className="bg-blue-50 rounded-2xl px-6 py-4 mb-6 flex-col">
             <ModuleWrapper
               storageKey="moduleSearchUrl"
-              defaultUrl="http://localhost:3004/bundle.js"
+              defaultUrl="https://salesportal.val.run/?https://sales-portal-search-production.up.railway.app/bundle.js"
             />
 
             <ModuleWrapper
