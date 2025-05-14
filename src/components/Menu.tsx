@@ -1,7 +1,9 @@
 import { useState } from "react";
 import ModuleWrapper from "./ModuleWrapper";
 // @ts-ignore
-const { useSearch } = await import("http://localhost:3004/bundle.js");
+const { useSearch } = await import(
+  "https://salesportal.val.run/?https://sales-portal-search-production.up.railway.app/bundle.js"
+);
 
 export const Menu = () => {
   const [page, setPage] = useState("contacts");
