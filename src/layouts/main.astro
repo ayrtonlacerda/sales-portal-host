@@ -42,7 +42,7 @@ import { Menu } from "../components/Menu";
             <ProfileHeader transition:persist />
             <div class="flex flex-col gap-8 h-full">
                 <main class="grid grid-cols-5 gap-8 h-full">
-                    <Menu client:load />
+                    <Menu client:only="react" />
                     {/*  <slot />/*/}
                 </main>
             </div>

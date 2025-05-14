@@ -10,6 +10,7 @@ type LoadModule = (
 interface ModuleWrapperProps {
   storageKey: string;
   defaultUrl: string;
+  props?: any;
 }
 
 const getModuleUrl: GetModuleUrl = (storageKey, defaultUrl) => {
@@ -29,7 +30,11 @@ const loadModule: LoadModule = async (storageKey, defaultUrl) => {
   }
 };
 
-const ModuleWrapper = ({ storageKey, defaultUrl }: ModuleWrapperProps) => {
+const ModuleWrapper = ({
+  storageKey,
+  defaultUrl,
+  props = {},
+}: ModuleWrapperProps) => {
   const [ComponentReact, setComponent] = useState(null);
 
   useEffect(() => {
@@ -40,7 +45,9 @@ const ModuleWrapper = ({ storageKey, defaultUrl }: ModuleWrapperProps) => {
 
   if (!ComponentReact) return <div>Carregando...</div>;
 
-  return <ComponentReact />;
+  console.log("props -> ", props);
+
+  return <ComponentReact {...props} />;
 };
 
 export default ModuleWrapper;
